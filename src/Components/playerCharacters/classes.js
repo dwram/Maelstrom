@@ -1,6 +1,5 @@
 export class Character {
     constructor(actionArg, imageSrc, characterWidth, characterHeight, startPosX, startPosY, offsetX, imageForward, imageReverse, imageRun, imageRunback, imageAttack, imageDie, imageIdle) {
-
         this.imageSrc = imageSrc
         this.imageForward = imageForward
         this.imageReverse = imageReverse
