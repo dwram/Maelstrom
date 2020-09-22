@@ -14,6 +14,18 @@
     "@material-ui/icons": "latest",
     "@material-ui/core": "latest"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "!**/serviceWorker.js",
+      "!**/Components/characterAnimation/idleAnimation.js",
+      "!**/Components/characterAnimation/opponentAttacking.js",
+      "!**/Components/characterAnimation/playerAttacking.js",
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "coverageReporters": ["text"]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

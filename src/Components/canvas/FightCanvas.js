@@ -52,7 +52,7 @@ const FightCanvas = (props) => {
             } else {
               console.log("Stopped here 2")
               dispatchOpp({type: 'set_attack', payload: true});
-              dispatch({type: 'attacked', payload: Math.floor(Math.random()*100)});
+              dispatch({type: 'attacked', payload: Math.floor(Math.random()*50)});
               dispatch({type: 'set_attack', payload: false});
             }
           }, 1000 )

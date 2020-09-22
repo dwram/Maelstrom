@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
 import './App.css';
-import Menu from './Components/menu/menu.js'
 import PlayerContext from './config/playerContext.js';
 import playerReducer from './Reducers/playerReducer.js'
 import player, { Player } from './Components/player/player.js'

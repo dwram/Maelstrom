@@ -1,36 +1,32 @@
 import React,{ useContext } from 'react'
 import PlayerContext from '../../config/playerContext.js'
 import { wizardAttack } from '../characterAnimation/wizard/wizard_attack.js';
+import { wizardDead } from '../characterAnimation/wizard/wizard_dead.js';
 import { wizardIdle } from '../characterAnimation/wizard/wizard_idle.js'
 
-const starting_hitpoints = 100;
-class player {
+const STARTING_HITPOINTS = 100;
+const STARTING_GOLD = 0;
 
-  constructor() {
+class Player {
+
+  constructor(idleImage = wizardIdle, attackImage = wizardAttack, deathImage = wizardDead, deathFrameNumber = 7) {
     this.name = 'placeholder'
-    this.hp = starting_hitpoints
-    this.MAX_HP = starting_hitpoints
+    this.hp = STARTING_HITPOINTS
+    this.MAX_HP = STARTING_HITPOINTS
     this.is_attacking = false
     this.current_avatar = wizardIdle
-    this.current_avatar_text = function() {
-      if (this.current_avatar === wizardIdle ) { return "wizard idle" } else { return "wizard attacking"}
-    }
-    this.toggleAttack = function() {
-      return this.is_attacking = !this.is_attacking
-    }
-    this.money = 0;
+    this.money = STARTING_GOLD;
+    this.idleSourceY = 0
+    this.deathSourceY = 0
+    this.attackSourceY = 0
+    this.idleImage = idleImage
+    this.attackImage = attackImage
+    this.deathImage = deathImage
+    this.deathFrameNumber = deathFrameNumber
+    this.isDead = () => { return this.hp <= 0}
+
   }
-
 }
 
-export default player;
+export default Player;
 
-export function Player() { 
-  const { PlayerObj }  = useContext(PlayerContext)
-  return (
-    <div>
-      <div data-testid="player_name" id="player_name">{ PlayerObj.name }</div>
-      <div data-testid="player_hp" id="player_hp"> {PlayerObj.hp}</div>
-    </div>
-  )
-}

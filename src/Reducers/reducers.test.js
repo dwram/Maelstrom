@@ -1,7 +1,4 @@
 import playerReducer from './playerReducer.js';
-import * as actions from '../Actions/index.js'
-
-actions.attack = jest.fn()
 
 describe('player reducer', () => {
   it('should return the initial state', () => {
@@ -9,13 +6,12 @@ describe('player reducer', () => {
     playerReducer(undefined, mockCallBack)
     expect(playerReducer(undefined, mockCallBack)).toBeTruthy();
     expect(playerReducer(undefined, {})).toEqual({});
-    
   });
-
+  // it('attacked reduces health', () => {
+  //   const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
+  //   dispatch({type: 'attacked', payload: 10})
+  //   playerReducer(PlayerObj, { type: "attacked", payload: 10 })
+ 
+  //   expect((PlayerObj.hp)).toEqual(90);
+  // });
 });
-
-
-
-
-
-

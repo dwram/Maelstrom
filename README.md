@@ -1,10 +1,10 @@
 # Welcome to Maelstrom
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/e3af813d-7367-41cc-8d5d-10c4fee3f327/deploy-status)](https://app.netlify.com/sites/maelstrom-rpg/deploys)
+![Netlify Status](https://api.netlify.com/api/v1/badges/e3af813d-7367-41cc-8d5d-10c4fee3f327/deploy-status)
 ![image](https://travis-ci.com/dwram/Maelstrom.svg?token=qT72mABNmswyKZFVotqL&branch=master)
 
-	Maelstrom is a fantasy turned based role playing game!
-	A world bending whirlpool has merged the sci-fi and fantasy worlds into one, you must battle against all divisions of monsters to get gold and survive!
+Maelstrom is a fantasy turned based role playing game!
+A world bending whirlpool has merged the sci-fi and fantasy worlds into one, you must battle against all divisions of monsters to get gold and survive!
 
 Play [here](https://maelstrom-rpg.netlify.app/)!
 

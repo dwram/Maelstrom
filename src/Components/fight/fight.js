@@ -3,7 +3,7 @@ import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import { Player } from '../../Components/player/player.js'
 import opponent,{ Opponent } from '../../Components/opponent/opponent.js'
-import { Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import FightRoundsContext from '../../config/fightRoundsContext.js'
 
 export default function Fight() {
@@ -18,8 +18,24 @@ export default function Fight() {
       } else {
         dispatchFight({type: 'next_round', payload: 1})
         dispatch({type: 'set_attack', payload: true});
+<<<<<<< HEAD
         dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*1000)});
+=======
+        dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*20)});
+>>>>>>> a55d2edccf79c51e7d69629087d5c529ba05551b
       }
+    }
+
+    function anyPlayerAttacking() {
+      return (PlayerObj.is_attacking === true || OpponentObj.is_attacking === true) 
+    }
+
+    function bothAlive() {
+      return OpponentObj.hp > 0 && PlayerObj.hp > 0
+    }
+
+    function anyDead() {
+      return PlayerObj.hp <= 0 || OpponentObj.hp <= 0
     }
 
     function handleNewFight(){
@@ -31,12 +47,12 @@ export default function Fight() {
 
     return (
     <div>
-      {OpponentObj.hp > 0 && PlayerObj.hp > 0 ? 
-        (PlayerObj.hp <= 0 || OpponentObj.hp <= 0 ? 
+      { bothAlive() ? 
+        (anyDead() ? 
           <div>Attack disappears</div> : 
-          <div><button data-testid = 'attack_button' style={{visibility: (PlayerObj.is_attacking === true && OpponentObj.is_attacking === true) ? 'hidden' : 'visible' }} onClick={() =>handleAttack()}>Attack</button></div>) : //MAIN FALSE
-      (PlayerObj.hp <= 0 ? <div><h1>YOU LOSE</h1><div><button onClick={handleNewFight}><Link to='/play'>Go back</Link></button></div> </div> : 
-        <div><h1>YOU WIN</h1> <div><button onClick={handleNewFight}><Link to='/play'>Go back</Link></button></div></div>)}
+          <div><button data-testid = 'attack_button' style={{visibility: anyPlayerAttacking() && bothAlive() ? 'hidden' : 'visible' }} onClick={() =>handleAttack()}>Attack</button></div>) : //MAIN FALSE
+      (PlayerObj.hp <= 0 ? <div><h1 data-testid="lose-message">YOU LOSE</h1><div><button onClick={handleNewFight}><Router><Route><Link to='/play'>Go back</Link></Route></Router></button></div> </div> : 
+        <div><h1 data-testid="win-message">YOU WIN</h1> <div><button onClick={handleNewFight}><Router><Route><Link to='/play'>Go back</Link></Route></Router></button></div></div>)}
 
     </div>
     )

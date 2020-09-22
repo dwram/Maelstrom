@@ -13,31 +13,43 @@ const dispatch = jest.fn();
 const dispatchOpp = jest.fn();
 const dispatchFight = jest.fn();
 
-const fightRender = (
-  <PlayerContext.Provider value={{PlayerObj, dispatch}}>
-      <OpponentContext.Provider value={{OpponentObj, dispatchOpp}}>
-          <FightRoundsContext.Provider value={{FightRounds, dispatchFight}}>
-            <Fight />
-          </FightRoundsContext.Provider>
-      </OpponentContext.Provider>
-  </PlayerContext.Provider>
-  )
-
-// let container;
-// beforeEach(() => {
-//     container = document.createElement('div');
-//     document.body.appendChild(container);
-//     ReactDOM.render( fightRender, container);
-// });
-
-// afterEach(cleanup);
-
 describe("Fight", function() {
     it("displays attack button", function() {
-        const { getByTestId } = render(fightRender);
+        const { getByTestId } = render(
+            <PlayerContext.Provider value={{PlayerObj, dispatch}}>
+                <OpponentContext.Provider value={{OpponentObj, dispatchOpp}}>
+                    <FightRoundsContext.Provider value={{FightRounds, dispatchFight}}>
+                    <Fight />
+                    </FightRoundsContext.Provider>
+                </OpponentContext.Provider>
+            </PlayerContext.Provider>
+        );
         expect(getByTestId("attack_button")).toBeTruthy();
-        // fireEvent.click(attackButton);
-        // expect(getByTestId("h1")).toHaveTextContent("YOU WIN")
-        // expect(attackButton.style.visibility).toEqual("hidden");
+    })
+    it("shows win message when opponent hp 0", function() {
+        const OpponentObj = { hp: 0 };
+        const { getByTestId } = render(
+            <PlayerContext.Provider value={{PlayerObj, dispatch}}>
+                <OpponentContext.Provider value={{OpponentObj, dispatchOpp}}>
+                    <FightRoundsContext.Provider value={{FightRounds, dispatchFight}}>
+                    <Fight />
+                    </FightRoundsContext.Provider>
+                </OpponentContext.Provider>
+            </PlayerContext.Provider>
+        );
+        expect(getByTestId("win-message")).toHaveTextContent("YOU WIN")
+    });
+    it("shows lose message when player hp 0", function() {
+        const PlayerObj = { hp: 0 };
+        const { getByTestId } = render(
+            <PlayerContext.Provider value={{PlayerObj, dispatch}}>
+                <OpponentContext.Provider value={{OpponentObj, dispatchOpp}}>
+                    <FightRoundsContext.Provider value={{FightRounds, dispatchFight}}>
+                    <Fight />
+                    </FightRoundsContext.Provider>
+                </OpponentContext.Provider>
+            </PlayerContext.Provider>
+        );
+        expect(getByTestId("lose-message")).toHaveTextContent("YOU LOSE")
     })
 });

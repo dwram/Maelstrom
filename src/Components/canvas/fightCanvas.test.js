@@ -7,8 +7,8 @@ import { render, cleanup, fireEvent } from "@testing-library/react";
 import FightRoundsContext from "../../config/fightRoundsContext.js";
 
 
-const OpponentObj  = { name: "Mouldie Harry", hp: 1 };
-const PlayerObj = { name: "Righteous Ilja", hp: 10000, is_attacking: false, current_avatar_text: jest.fn() };
+const OpponentObj  = { name: "Mouldie Harry", hp: 1, deathImage: jest.fn(), attackImage: jest.fn(), idleImage: jest.fn() };
+const PlayerObj = { name: "Righteous Ilja", hp: 10000, is_attacking: false, current_avatar_text: jest.fn(), deathImage: jest.fn(), attackImage: jest.fn(), idleImage: jest.fn() };
 const FightRounds = { round: 0 };
 const fightCanvasRender = (
   <PlayerContext.Provider value={{PlayerObj}}>
@@ -29,8 +29,8 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-test("fight ending after hp is less than 0", () =>{
+test("healthbars are rendered", () =>{
     const { queryByTestId } = render(<> fightCanvasRender </>);
     expect(queryByTestId("healthbars")).toBeTruthy();
-    ;
+    
 });

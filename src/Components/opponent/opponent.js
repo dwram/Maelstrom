@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
 import OpponentContext from '../../config/opponentContext.js'
+import { banditAttack } from "../characterAnimation/bandit/bandit_attack.js";
+import { banditDead } from "../characterAnimation/bandit/bandit_dead.js";
+import { banditIdle } from "../characterAnimation/bandit/bandit_idle.js";
 
 const starting_hitpoints = 125;
 /* const opponent = {
@@ -10,25 +13,21 @@ const starting_hitpoints = 125;
 
 class opponent {
 
-  constructor(){
+  constructor(idleImage = banditIdle, attackImage = banditAttack, deathImage = banditDead, deathFrameNumber = 7){
     this.name = 'Opponent_Placeholder'
     this.hp = starting_hitpoints
     this.MAX_HP = starting_hitpoints
     this.is_attacking = false;
-    this.toggleAttack = function() {
-      return this.is_attacking = !this.is_attacking
-    }
+    this.money = 0
+    this.idleSourceY = 0
+    this.deathSourceY = 3
+    this.attackSourceY = 2
+    this.idleImage = idleImage
+    this.attackImage = attackImage
+    this.deathImage = deathImage
+    this.deathFrameNumber = deathFrameNumber
+    this.isDead = () => { return this.hp <= 0}
   }
 }
 
 export default opponent;
-
-export function Opponent() { 
-  const { OpponentObj }  = useContext(OpponentContext)
-  return (
-    <div>
-      <div data-testid="opponent_name" id="opponent_name">{ OpponentObj.name }</div>
-      <div data-testid="opponent_hp" id="opponent_hp"> {OpponentObj.hp}</div>
-    </div>
-  )
-}
