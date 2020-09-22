@@ -15,11 +15,7 @@ export function BackgroundMusic() {
     const playMusic = function() {
         music.background.play()
         music.background.loop = true;
-<<<<<<< HEAD
-        music.background.volume = 0
-=======
         music.background.volume = 0.0
->>>>>>> a55d2edccf79c51e7d69629087d5c529ba05551b
     }
     const handleChange =  (e) => {
         music.background.volume = e

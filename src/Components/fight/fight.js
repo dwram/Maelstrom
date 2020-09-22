@@ -18,11 +18,7 @@ export default function Fight() {
       } else {
         dispatchFight({type: 'next_round', payload: 1})
         dispatch({type: 'set_attack', payload: true});
-<<<<<<< HEAD
-        dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*1000)});
-=======
         dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*20)});
->>>>>>> a55d2edccf79c51e7d69629087d5c529ba05551b
       }
     }
 
