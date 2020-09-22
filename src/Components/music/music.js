@@ -8,7 +8,7 @@ music.fight = new Audio()
 let initialVolume = 0.3
 
 export function BackgroundMusic() {
-
+    console.log("rerender")
     const [musicVolume, setVolume] = useState(0.3)
 
     let AudioRef = useRef(null)
